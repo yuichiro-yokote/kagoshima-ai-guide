@@ -758,7 +758,7 @@ export default function Home() {
         </div>
 
         {/* Map */}
-        <div className={`${layoutMode === "pc" ? "w-1/2" : spView === "map" ? "flex-1" : "hidden"}`}>
+        <div className={`min-h-0 ${layoutMode === "pc" ? "w-1/2" : spView === "map" ? "flex-1 w-full" : "hidden"}`}>
           <Map
             spots={mode === "route" ? displayedSpots : spots}
             route={routeCoords}
