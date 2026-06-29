@@ -18,6 +18,13 @@ const DEFAULT_CATEGORIES: Category[] = ["観光", "展望", "飲食"];
 const CATEGORY_EMOJI: Record<Category, string> = {
   観光: "🏛", 展望: "🔭", 飲食: "🍜", 買い物: "🛍", トイレ: "🚻", 駐車場: "🅿", その他: "📍",
 };
+const SPOT_CATEGORY_EMOJI: Record<string, string> = {
+  観光: "🏛",
+  文化財: "🏯",
+  飲食: "🍜",
+  展望: "🔭",
+  その他: "📍",
+};
 
 type SortBy = "none" | "rating" | "reviewCount";
 type Waypoint = { value: string; coord: { lat: number; lng: number } | null };
@@ -58,6 +65,14 @@ function cleanText(text: string): string {
 function renderStars(rating: number) {
   const full = Math.round(rating);
   return "★".repeat(full) + "☆".repeat(5 - full);
+}
+
+function getSpotCategory(spot: Spot): string {
+  return spot.category ?? (CATEGORIES.includes(spot.description as Category) ? spot.description : "観光");
+}
+
+function getSpotEmoji(spot: Spot): string {
+  return SPOT_CATEGORY_EMOJI[getSpotCategory(spot)] ?? "📍";
 }
 
 export default function Home() {
@@ -457,6 +472,7 @@ export default function Home() {
                 )}
                 {messages.map((msg) => {
                   const text = getTextContent(msg);
+                  const parsedSpots = msg.role === "assistant" ? parseSpots(text) : [];
                   return (
                     <div key={msg.id} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                       <div className={`max-w-[85%] rounded-2xl px-5 py-3.5 whitespace-pre-wrap text-sm leading-relaxed ${
@@ -465,6 +481,31 @@ export default function Home() {
                           : "bg-white/90 backdrop-blur-sm text-gray-700 shadow-lg shadow-gray-200/50 border border-white/80"
                       }`}>
                         {msg.role === "assistant" ? <div className="prose-chat"><Markdown>{cleanText(text)}</Markdown></div> : cleanText(text)}
+                        {parsedSpots.length > 0 && (
+                          <div className="mt-3 grid gap-2">
+                            {parsedSpots.slice(0, 6).map((spot, j) => (
+                              <div key={`${spot.name}-${j}`} className="rounded-xl border border-gray-100 bg-white px-3 py-2 shadow-sm">
+                                <div className="flex items-start justify-between gap-2">
+                                  <div className="min-w-0">
+                                    <div className="flex items-center gap-1.5">
+                                      <span className="text-base shrink-0">{getSpotEmoji(spot)}</span>
+                                      <span className="text-sm font-semibold text-gray-800 truncate">{spot.name}</span>
+                                    </div>
+                                    <div className="mt-1 flex flex-wrap gap-1.5">
+                                      <span className="text-[11px] rounded-full bg-gray-100 text-gray-600 px-2 py-0.5">{getSpotCategory(spot)}</span>
+                                      {spot.durationMinutes && (
+                                        <span className="text-[11px] rounded-full bg-amber-50 text-amber-700 px-2 py-0.5">目安{spot.durationMinutes}分</span>
+                                      )}
+                                      {spot.tags?.slice(0, 4).map((tag) => (
+                                        <span key={tag} className="text-[11px] rounded-full bg-blue-50 text-blue-700 px-2 py-0.5">{tag}</span>
+                                      ))}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
                         {msg.role === "assistant" && (() => {
                           const cleaned = cleanText(text);
                           const allAvailable = [

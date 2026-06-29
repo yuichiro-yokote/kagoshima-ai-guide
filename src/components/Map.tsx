@@ -16,6 +16,7 @@ const spotIcon = L.icon({
 
 const CATEGORY_STYLE: Record<string, { color: string; emoji: string }> = {
   観光: { color: "#ea580c", emoji: "🏛" },
+  文化財: { color: "#92400e", emoji: "🏯" },
   展望: { color: "#7c3aed", emoji: "🔭" },
   飲食: { color: "#dc2626", emoji: "🍜" },
   買い物: { color: "#16a34a", emoji: "🛍" },
@@ -134,6 +135,9 @@ export type Spot = {
   lat: number;
   lng: number;
   description: string;
+  category?: string;
+  durationMinutes?: number;
+  tags?: string[];
   rating?: number;
   reviewCount?: number;
   photoUrl?: string;
@@ -206,21 +210,36 @@ function ZoomAwareSpots({ spots }: { spots: Spot[] }) {
   return (
     <>
       {visible.map((spot, i) => {
-        const isCategory = KNOWN_CATEGORIES.has(spot.description);
+        const category = spot.category ?? (KNOWN_CATEGORIES.has(spot.description) ? spot.description : undefined);
+        const isCategory = Boolean(category);
         return (
           <Marker
             key={`${spot.name}-${i}`}
             position={[spot.lat, spot.lng]}
-            icon={isCategory ? makeCategoryIcon(spot.description) : spotIcon}
+            icon={category ? makeCategoryIcon(category) : spotIcon}
           >
             <Popup>
               <strong>{spot.name}</strong>
-              {isCategory && (
+              {category && (
                 <span style={{ marginLeft: "6px", fontSize: "11px", color: "#6b7280" }}>
-                  {CATEGORY_STYLE[spot.description]?.emoji} {spot.description}
+                  {CATEGORY_STYLE[category]?.emoji} {category}
                 </span>
               )}
-              {!isCategory && <><br />{spot.description}</>}
+              {spot.description && !KNOWN_CATEGORIES.has(spot.description) && <><br />{spot.description}</>}
+              {(spot.durationMinutes || spot.tags?.length) && (
+                <div style={{ marginTop: "6px", display: "flex", gap: "4px", flexWrap: "wrap" }}>
+                  {spot.durationMinutes && (
+                    <span style={{ fontSize: "11px", color: "#374151", background: "#f3f4f6", borderRadius: "999px", padding: "2px 7px" }}>
+                      目安{spot.durationMinutes}分
+                    </span>
+                  )}
+                  {spot.tags?.slice(0, 4).map((tag) => (
+                    <span key={tag} style={{ fontSize: "11px", color: "#1d4ed8", background: "#dbeafe", borderRadius: "999px", padding: "2px 7px" }}>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
               {spot.photoUrl && (
                 <div style={{ marginTop: "6px" }}>
                   <img src={spot.photoUrl} alt={spot.name} style={{ width: "100%", borderRadius: "4px", maxHeight: "120px", objectFit: "cover" }} />
