@@ -49,7 +49,9 @@ function parseSpots(text: string): Spot[] {
 function cleanText(text: string): string {
   return text
     .replace(/<!--SPOTS_JSON\[.*?\]SPOTS_JSON-->/gs, "")
+    .replace(/<!--SPOTS_JSON.*/gs, "")
     .replace(/<!--ROUTE_CONTEXT.*?ROUTE_CONTEXT-->/gs, "")
+    .replace(/<!--ROUTE_CONTEXT.*/gs, "")
     .trim();
 }
 
@@ -426,7 +428,7 @@ export default function Home() {
           {/* Chat mode */}
           {mode === "chat" && (
             <>
-              <div className="flex-1 overflow-y-auto p-4 space-y-4">
+              <div className="flex-1 overflow-y-auto p-4 space-y-2">
                 {messages.length === 0 && (
                   <div className="text-center mt-16 px-6">
                     <p className="text-5xl mb-5">🌋</p>
@@ -527,7 +529,7 @@ export default function Home() {
 
           {/* Route mode */}
           {mode === "route" && (
-            <div className="flex-1 overflow-y-auto p-4 space-y-4">
+            <div className="flex-1 overflow-y-auto p-4 space-y-2">
               <form onSubmit={handleRouteSubmit} className="space-y-0">
 
                 {/* 地点A */}
