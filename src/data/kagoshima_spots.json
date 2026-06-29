@@ -51578,5 +51578,105 @@
     "lng": null,
     "description": "営業の種類: 氷雪製造業",
     "source": "飲食店データ"
+  },
+  {
+    "id": "tourism-extra-sakurajima-nagisa-footbath",
+    "name": "桜島溶岩なぎさ公園足湯",
+    "category": "tourism",
+    "address": "鹿児島県鹿児島市桜島横山町1722-3",
+    "lat": 31.5929,
+    "lng": 130.5988,
+    "description": "桜島港から歩いて行きやすい海沿いの足湯。錦江湾と桜島を眺めながら休憩できる。",
+    "source": "追加観光スポット"
+  },
+  {
+    "id": "tourism-extra-yunohira-observatory",
+    "name": "湯之平展望所",
+    "category": "tourism",
+    "address": "鹿児島県鹿児島市桜島小池町1025",
+    "lat": 31.5915,
+    "lng": 130.6373,
+    "description": "一般の人が入れる桜島北岳の高所展望地。噴煙を上げる山肌と錦江湾を見渡せる。",
+    "source": "追加観光スポット"
+  },
+  {
+    "id": "tourism-extra-arimura-lava-observatory",
+    "name": "有村溶岩展望所",
+    "category": "tourism",
+    "address": "鹿児島県鹿児島市有村町952",
+    "lat": 31.5608,
+    "lng": 130.6669,
+    "description": "大正溶岩原に整備された展望所。迫力ある桜島南岳と溶岩地形を間近に感じられる。",
+    "source": "追加観光スポット"
+  },
+  {
+    "id": "tourism-extra-sakurajima-visitor-center",
+    "name": "桜島ビジターセンター",
+    "category": "tourism",
+    "address": "鹿児島県鹿児島市桜島横山町1722-29",
+    "lat": 31.593,
+    "lng": 130.5997,
+    "description": "桜島の噴火史や自然を学べる展示施設。桜島観光の最初の立ち寄り先に使いやすい。",
+    "source": "追加観光スポット"
+  },
+  {
+    "id": "tourism-extra-tenmonkan-dori",
+    "name": "天文館通り",
+    "category": "tourism",
+    "address": "鹿児島県鹿児島市東千石町・千日町周辺",
+    "lat": 31.5886,
+    "lng": 130.5524,
+    "description": "鹿児島市中心部の繁華街。飲食店、土産店、アーケードが集まり雨の日も歩きやすい。",
+    "source": "追加観光スポット"
+  },
+  {
+    "id": "tourism-extra-yamakataya",
+    "name": "山形屋",
+    "category": "tourism",
+    "address": "鹿児島県鹿児島市金生町3-1",
+    "lat": 31.5916,
+    "lng": 130.5571,
+    "description": "鹿児島を代表する老舗百貨店。買い物や食堂利用、天文館周辺散策の拠点になる。",
+    "source": "追加観光スポット"
+  },
+  {
+    "id": "tourism-extra-amu-plaza-kagoshima",
+    "name": "アミュプラザ鹿児島",
+    "category": "tourism",
+    "address": "鹿児島県鹿児島市中央町1-1",
+    "lat": 31.5838,
+    "lng": 130.5415,
+    "description": "鹿児島中央駅直結の大型商業施設。飲食、買い物、映画館、観覧車をまとめて楽しめる。",
+    "source": "追加観光スポット"
+  },
+  {
+    "id": "tourism-extra-amu-ferris-wheel",
+    "name": "アミュラン",
+    "category": "tourism",
+    "address": "鹿児島県鹿児島市中央町1-1",
+    "lat": 31.5838,
+    "lng": 130.5415,
+    "description": "アミュプラザ鹿児島屋上の観覧車。鹿児島中央駅周辺や桜島方面を眺められる。",
+    "source": "追加観光スポット"
+  },
+  {
+    "id": "tourism-extra-ibusuki-onsen",
+    "name": "指宿温泉",
+    "category": "tourism",
+    "address": "鹿児島県指宿市",
+    "lat": 31.2378,
+    "lng": 130.6425,
+    "description": "砂むし温泉で有名な鹿児島県南部の温泉地。鹿児島市からの日帰り・宿泊観光にも向く。",
+    "source": "追加観光スポット"
+  },
+  {
+    "id": "tourism-extra-kirishima-onsen",
+    "name": "霧島温泉郷",
+    "category": "tourism",
+    "address": "鹿児島県霧島市牧園町周辺",
+    "lat": 31.8875,
+    "lng": 130.8287,
+    "description": "霧島連山の山麓に広がる温泉地。自然景観、神社、宿泊を組み合わせた観光に向く。",
+    "source": "追加観光スポット"
   }
 ]
