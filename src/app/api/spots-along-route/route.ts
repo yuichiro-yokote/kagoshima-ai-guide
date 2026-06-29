@@ -209,5 +209,7 @@ out body;
     })
   );
 
-  return Response.json({ spots: spotsWithRatings });
+  const spotsWithGoogleInfo = spotsWithRatings.filter((s) => s.rating != null || s.photoUrl);
+
+  return Response.json({ spots: spotsWithGoogleInfo });
 }
