@@ -146,6 +146,15 @@ function toLatLng(coords: [number, number][]): [number, number][] {
   return coords.map(([lng, lat]) => [lat, lng]);
 }
 
+function InvalidateSize() {
+  const map = useMap();
+  useEffect(() => {
+    const timer = setTimeout(() => map.invalidateSize(), 100);
+    return () => clearTimeout(timer);
+  });
+  return null;
+}
+
 function FitBounds({
   spots,
   route,
@@ -375,6 +384,7 @@ export default function Map({
         </>
       )}
       <ZoomAwareSpots spots={spots} />
+      <InvalidateSize />
       <FitBounds spots={spots} route={route ?? null} start={start ?? null} goal={goal ?? null} />
     </MapContainer>
   );
