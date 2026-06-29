@@ -62,7 +62,7 @@ export default function Home() {
   const { messages, sendMessage, status } = useChat();
   const [input, setInput] = useState("");
   const [spots, setSpots] = useState<Spot[]>([]);
-  const [chatSpotDetails, setChatSpotDetails] = useState<Map<string, Spot>>(new Map());
+  const [chatSpotDetails, setChatSpotDetails] = useState<Record<string, Spot>>({});
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const [mode, setMode] = useState<Mode>("chat");
@@ -115,7 +115,7 @@ export default function Home() {
     }
     setSpots(allSpots);
     // 新しいスポットがあればGoogle Places APIで詳細取得
-    const newSpots = allSpots.filter((s) => !chatSpotDetails.has(s.name));
+    const newSpots = allSpots.filter((s) => !chatSpotDetails[s.name]);
     if (newSpots.length > 0) {
       fetch("/api/spot-info", {
         method: "POST",
@@ -125,8 +125,8 @@ export default function Home() {
         .then((r) => r.json())
         .then((data) => {
           setChatSpotDetails((prev) => {
-            const next = new Map(prev);
-            for (const s of data.spots) next.set(s.name, s);
+            const next = { ...prev };
+            for (const s of data.spots) next[s.name] = s;
             return next;
           });
         })
@@ -460,7 +460,7 @@ export default function Home() {
                           const cleaned = cleanText(text);
                           const allAvailable = [
                             ...routeSpots.filter((s) => s.photoUrl),
-                            ...Array.from(chatSpotDetails.values()).filter((s) => s.photoUrl),
+                            ...Object.values(chatSpotDetails).filter((s) => s.photoUrl),
                           ];
                           const seen = new Set<string>();
                           const mentioned = allAvailable.filter((s) => {
