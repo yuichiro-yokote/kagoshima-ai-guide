@@ -428,7 +428,7 @@ export default function Home() {
           {/* Chat mode */}
           {mode === "chat" && (
             <>
-              <div className="flex-1 overflow-y-auto p-4 space-y-2">
+              <div className="flex-1 overflow-y-auto p-3 space-y-1.5">
                 {messages.length === 0 && (
                   <div className="text-center mt-16 px-6">
                     <p className="text-5xl mb-5">🌋</p>
@@ -529,7 +529,7 @@ export default function Home() {
 
           {/* Route mode */}
           {mode === "route" && (
-            <div className="flex-1 overflow-y-auto p-4 space-y-2">
+            <div className="flex-1 overflow-y-auto p-3 space-y-1.5">
               <form onSubmit={handleRouteSubmit} className="space-y-0">
 
                 {/* 地点A */}
