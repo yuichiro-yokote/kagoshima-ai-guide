@@ -52028,5 +52028,715 @@
     "lng": 128.4491,
     "description": "干潮時に沖合へ現れる白い砂浜。出現時期や潮位の確認が必要だが、与論島を代表する絶景スポット。",
     "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-kagoshima-health-forest-park",
+    "name": "かごしま健康の森公園",
+    "category": "tourism",
+    "address": "鹿児島県鹿児島市犬迫町825",
+    "lat": 31.645,
+    "lng": 130.5037,
+    "description": "広い芝生や運動施設を備えた郊外の公園。家族連れの休憩や、鹿児島市北部を車で回る旅程に入れやすい。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-kagoshima-city-urban-agriculture-center",
+    "name": "鹿児島市都市農業センター",
+    "category": "tourism",
+    "address": "鹿児島県鹿児島市犬迫町4705",
+    "lat": 31.6644,
+    "lng": 130.4908,
+    "description": "四季の花畑や農業体験施設がある鹿児島市北西部のスポット。春の花や秋のコスモス時期に立ち寄りやすい。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-terayama-park",
+    "name": "寺山公園",
+    "category": "tourism",
+    "address": "鹿児島県鹿児島市吉野町10859",
+    "lat": 31.6733,
+    "lng": 130.5856,
+    "description": "桜島や錦江湾を見渡せる吉野方面の展望地。寺山炭窯跡や関吉の疎水溝と合わせて巡りやすい。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-yaeyama-park",
+    "name": "八重山公園",
+    "category": "tourism",
+    "address": "鹿児島県鹿児島市郡山町5517-1",
+    "lat": 31.705,
+    "lng": 130.4706,
+    "description": "キャンプ場や展望広場を備えた自然公園。市街地から離れて山側の景色を楽しみたい時の候補になる。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-tosenkyo",
+    "name": "唐船峡",
+    "category": "tourism",
+    "address": "鹿児島県指宿市開聞十町5967",
+    "lat": 31.1978,
+    "lng": 130.5424,
+    "description": "清流を生かしたそうめん流しで知られる指宿の名所。開聞岳や池田湖方面と合わせた南薩ドライブに向く。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-ryugu-shrine",
+    "name": "龍宮神社",
+    "category": "tourism",
+    "address": "鹿児島県指宿市山川岡児ケ水1578-8",
+    "lat": 31.1594,
+    "lng": 130.5943,
+    "description": "長崎鼻近くにある浦島太郎伝説ゆかりの神社。開聞岳を望む海沿いの景色と合わせて楽しめる。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-nishi-oyama-station",
+    "name": "JR西大山駅",
+    "category": "tourism",
+    "address": "鹿児島県指宿市山川大山",
+    "lat": 31.1901,
+    "lng": 130.5766,
+    "description": "開聞岳を正面に望むJR日本最南端の駅。黄色いポストもあり、指宿・開聞エリアの写真スポットになる。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-hirakiki-shrine",
+    "name": "枚聞神社",
+    "category": "tourism",
+    "address": "鹿児島県指宿市開聞十町1366",
+    "lat": 31.2032,
+    "lng": 130.5385,
+    "description": "開聞岳の麓に鎮座する薩摩国一宮。朱塗りの社殿が印象的で、開聞岳周辺の歴史散策に組み込みやすい。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-satsuma-denshokan",
+    "name": "薩摩伝承館",
+    "category": "tourism",
+    "address": "鹿児島県指宿市東方12131-4",
+    "lat": 31.255,
+    "lng": 130.6511,
+    "description": "薩摩焼や美術品を展示する指宿の文化施設。温泉宿泊や砂むし温泉と合わせて、屋内観光に使いやすい。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-sebirashizen-park",
+    "name": "瀬平自然公園",
+    "category": "tourism",
+    "address": "鹿児島県南九州市頴娃町郡",
+    "lat": 31.2145,
+    "lng": 130.4674,
+    "description": "海越しに開聞岳を望む南薩の展望スポット。指宿から知覧・枕崎方面へ向かう途中の休憩にも向く。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-bandokorobana",
+    "name": "番所鼻自然公園",
+    "category": "tourism",
+    "address": "鹿児島県南九州市頴娃町別府5202",
+    "lat": 31.236,
+    "lng": 130.4274,
+    "description": "開聞岳と海を望む景勝地。潮だまりや遊歩道があり、南九州市の海沿いドライブで立ち寄りやすい。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-bonotsu-kishinkan",
+    "name": "坊津歴史資料センター輝津館",
+    "category": "tourism",
+    "address": "鹿児島県南さつま市坊津町坊9424-1",
+    "lat": 31.2727,
+    "lng": 130.2328,
+    "description": "古くから海上交易で栄えた坊津の歴史を学べる資料館。リアス海岸の景色と合わせて南薩の文化に触れられる。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-ganshin-memorial",
+    "name": "鑑真記念館",
+    "category": "tourism",
+    "address": "鹿児島県南さつま市坊津町秋目225-2",
+    "lat": 31.3597,
+    "lng": 130.1921,
+    "description": "鑑真和上の上陸伝承に関わる資料館。秋目海岸の景色とともに、南薩の国際交流史を感じられる。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-hinokami-park",
+    "name": "火之神公園",
+    "category": "tourism",
+    "address": "鹿児島県枕崎市火之神岬町47",
+    "lat": 31.2574,
+    "lng": 130.2845,
+    "description": "立神岩と東シナ海を望む枕崎の海辺の公園。夕景や海沿い散策に向き、枕崎観光の立ち寄り先になる。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-kirishima-onsen-market",
+    "name": "霧島温泉市場",
+    "category": "tourism",
+    "address": "鹿児島県霧島市牧園町高千穂3878-114",
+    "lat": 31.8913,
+    "lng": 130.8297,
+    "description": "霧島温泉郷の中心にある休憩・土産スポット。温泉蒸し料理や足湯もあり、温泉ドライブの拠点にしやすい。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-shiohitashi-ryoma-park",
+    "name": "塩浸温泉龍馬公園",
+    "category": "tourism",
+    "address": "鹿児島県霧島市牧園町宿窪田3606",
+    "lat": 31.8337,
+    "lng": 130.7637,
+    "description": "坂本龍馬とお龍が訪れた温泉地に整備された公園。霧島の温泉文化と歴史を合わせて楽しめる。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-kirishima-shinwanosato",
+    "name": "霧島神話の里公園",
+    "category": "tourism",
+    "address": "鹿児島県霧島市霧島田口2583-22",
+    "lat": 31.872,
+    "lng": 130.8636,
+    "description": "霧島連山を望む高台の公園。リフトや遊具、売店があり、霧島神宮と合わせた家族向け観光に使いやすい。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-kareigawa-station",
+    "name": "嘉例川駅",
+    "category": "tourism",
+    "address": "鹿児島県霧島市隼人町嘉例川2174",
+    "lat": 31.8157,
+    "lng": 130.7487,
+    "description": "明治期の木造駅舎が残る肥薩線の駅。駅弁やレトロな雰囲気で知られ、霧島方面の寄り道に向く。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-uenohara-jomon",
+    "name": "上野原縄文の森",
+    "category": "tourism",
+    "address": "鹿児島県霧島市国分上野原縄文の森1-1",
+    "lat": 31.7048,
+    "lng": 130.8022,
+    "description": "縄文時代の大規模遺跡を学べる史跡公園。展示館や復元集落があり、雨の日でも歴史学習に使いやすい。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-kagoshima-jingu",
+    "name": "鹿児島神宮",
+    "category": "tourism",
+    "address": "鹿児島県霧島市隼人町内2496-1",
+    "lat": 31.7429,
+    "lng": 130.738,
+    "description": "大隅国一宮として知られる神社。朱塗りの社殿や初午祭で知られ、霧島・隼人エリアの歴史散策に向く。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-ryumon-falls",
+    "name": "龍門滝",
+    "category": "tourism",
+    "address": "鹿児島県姶良市加治木町木田5266-1",
+    "lat": 31.7387,
+    "lng": 130.6627,
+    "description": "高さのある滝を間近に望める姶良市の景勝地。加治木方面のドライブや龍門司坂散策と合わせやすい。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-tatsumonji-zaka",
+    "name": "龍門司坂",
+    "category": "tourism",
+    "address": "鹿児島県姶良市加治木町木田",
+    "lat": 31.7398,
+    "lng": 130.6604,
+    "description": "苔むした石畳が残る旧街道。歴史情緒があり、龍門滝や加治木周辺の散策と合わせて歩きやすい。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-imutaike",
+    "name": "藺牟田池",
+    "category": "tourism",
+    "address": "鹿児島県薩摩川内市祁答院町藺牟田",
+    "lat": 31.8191,
+    "lng": 130.4722,
+    "description": "外輪山に囲まれた湖沼と湿地の景勝地。湖畔散策やサイクリングに向き、北薩の自然観光に使いやすい。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-nitta-shrine",
+    "name": "新田神社",
+    "category": "tourism",
+    "address": "鹿児島県薩摩川内市宮内町1935-2",
+    "lat": 31.8339,
+    "lng": 130.3047,
+    "description": "可愛山陵に隣接する薩摩川内市の古社。長い石段と森に包まれた境内が印象的な歴史スポット。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-iriki-fumoto",
+    "name": "入来麓武家屋敷群",
+    "category": "tourism",
+    "address": "鹿児島県薩摩川内市入来町浦之名",
+    "lat": 31.791,
+    "lng": 130.4348,
+    "description": "玉石垣と武家門が残る外城の町並み。出水や知覧とは違う北薩の武家集落を歩いて楽しめる。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-akune-oshima",
+    "name": "阿久根大島",
+    "category": "tourism",
+    "address": "鹿児島県阿久根市波留",
+    "lat": 32.0177,
+    "lng": 130.1775,
+    "description": "阿久根沖に浮かぶ自然豊かな島。海水浴やキャンプ、野生の鹿で知られ、夏の北薩レジャーに向く。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-hario-park",
+    "name": "針尾公園",
+    "category": "tourism",
+    "address": "鹿児島県出水郡長島町鷹巣",
+    "lat": 32.188,
+    "lng": 130.1773,
+    "description": "長島の島々と海峡を見渡せる展望公園。ドライブ途中の休憩や、夕景を眺めるスポットとして使いやすい。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-kannondaki-park",
+    "name": "観音滝公園",
+    "category": "tourism",
+    "address": "鹿児島県薩摩郡さつま町中津川7601",
+    "lat": 31.934,
+    "lng": 130.4751,
+    "description": "滝や渓流、温泉施設がある自然公園。北薩の山あいで、涼しげな水辺散策を楽しめる。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-tarumizu-senbon-icho",
+    "name": "垂水千本イチョウ園",
+    "category": "tourism",
+    "address": "鹿児島県垂水市新御堂",
+    "lat": 31.5004,
+    "lng": 130.7326,
+    "description": "秋に一面が黄金色に染まるイチョウの名所。垂水や桜島方面のドライブで季節感を出しやすい。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-kanoya-air-base-museum",
+    "name": "鹿屋航空基地史料館",
+    "category": "tourism",
+    "address": "鹿児島県鹿屋市西原3-11-2",
+    "lat": 31.3809,
+    "lng": 130.8363,
+    "description": "海上自衛隊鹿屋航空基地に隣接する史料館。航空機展示や歴史資料があり、大隅の屋内観光に使いやすい。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-arahe-sannomisasagi",
+    "name": "吾平山上陵",
+    "category": "tourism",
+    "address": "鹿児島県鹿屋市吾平町上名5250-1",
+    "lat": 31.3335,
+    "lng": 130.8746,
+    "description": "渓流沿いの参道が美しい神代三山陵の一つ。静かな森を歩く、大隅らしい歴史と自然のスポット。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-kamikawaotaki-park",
+    "name": "神川大滝公園",
+    "category": "tourism",
+    "address": "鹿児島県肝属郡錦江町神川2382",
+    "lat": 31.2636,
+    "lng": 130.826,
+    "description": "大滝と吊り橋を楽しめる大隅半島の自然公園。雄川の滝や佐多岬方面へ向かう途中の立ち寄りにも向く。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-kunino-matsubara",
+    "name": "くにの松原",
+    "category": "tourism",
+    "address": "鹿児島県曽於郡大崎町益丸",
+    "lat": 31.43,
+    "lng": 131.0008,
+    "description": "白砂青松の海岸線が続く大崎町の景勝地。海辺の散策やキャンプ場利用と合わせた大隅観光に使いやすい。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-tanegashima-space-center",
+    "name": "種子島宇宙センター",
+    "category": "tourism",
+    "address": "鹿児島県熊毛郡南種子町茎永麻津",
+    "lat": 30.3752,
+    "lng": 130.9578,
+    "description": "日本最大級のロケット発射場。宇宙科学技術館や海沿いの景観もあり、種子島観光の中心になる。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-chikura-cave",
+    "name": "千座の岩屋",
+    "category": "tourism",
+    "address": "鹿児島県熊毛郡南種子町平山",
+    "lat": 30.3838,
+    "lng": 130.9651,
+    "description": "干潮時に洞窟へ入れる種子島の海食洞。宇宙センター方面と合わせて巡れる、海の景勝スポット。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-teppokan",
+    "name": "種子島開発総合センター鉄砲館",
+    "category": "tourism",
+    "address": "鹿児島県西之表市西之表7585",
+    "lat": 30.7319,
+    "lng": 130.9964,
+    "description": "鉄砲伝来や種子島の歴史を紹介する資料館。西之表港周辺で、到着日にも立ち寄りやすい屋内スポット。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-okawa-falls",
+    "name": "大川の滝",
+    "category": "tourism",
+    "address": "鹿児島県熊毛郡屋久島町栗生",
+    "lat": 30.2717,
+    "lng": 130.4213,
+    "description": "落差の大きい屋久島を代表する滝。車で近くまで行けるため、島内周遊の自然景観スポットとして使いやすい。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-nagata-inakahama",
+    "name": "永田いなか浜",
+    "category": "tourism",
+    "address": "鹿児島県熊毛郡屋久島町永田",
+    "lat": 30.4099,
+    "lng": 130.4248,
+    "description": "ウミガメの産卵地として知られる屋久島北西部の砂浜。夕景も美しく、自然保護に配慮して訪れたい。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-yakushima-environment-center",
+    "name": "屋久島環境文化村センター",
+    "category": "tourism",
+    "address": "鹿児島県熊毛郡屋久島町宮之浦823-1",
+    "lat": 30.4278,
+    "lng": 130.5724,
+    "description": "屋久島の自然や文化を映像と展示で学べる施設。宮之浦港近くで、到着後の情報収集にも向く。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-amami-park",
+    "name": "奄美パーク",
+    "category": "tourism",
+    "address": "鹿児島県奄美市笠利町節田1834",
+    "lat": 28.4314,
+    "lng": 129.7059,
+    "description": "奄美の自然・歴史・文化を紹介する総合施設。空港から近く、到着日や雨の日の観光に入れやすい。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-tanaka-isson-museum",
+    "name": "田中一村記念美術館",
+    "category": "tourism",
+    "address": "鹿児島県奄美市笠利町節田1834",
+    "lat": 28.4315,
+    "lng": 129.7062,
+    "description": "奄美の自然を描いた田中一村の作品を展示する美術館。奄美パーク内にあり、文化観光として立ち寄りやすい。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-honohoshi-coast",
+    "name": "ホノホシ海岸",
+    "category": "tourism",
+    "address": "鹿児島県大島郡瀬戸内町蘇刈",
+    "lat": 28.1466,
+    "lng": 129.3374,
+    "description": "丸い石が波で鳴る奄美大島南部の海岸。荒々しい海景色が魅力で、瀬戸内町方面のドライブに向く。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-kinsakubaru",
+    "name": "金作原原生林",
+    "category": "tourism",
+    "address": "鹿児島県奄美市名瀬朝戸",
+    "lat": 28.356,
+    "lng": 129.4384,
+    "description": "亜熱帯の森を体感できる奄美大島の自然散策エリア。ガイド利用を前提に、奄美らしい森の景観を楽しめる。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-heart-rock",
+    "name": "ハートロック",
+    "category": "tourism",
+    "address": "鹿児島県大島郡龍郷町赤尾木",
+    "lat": 28.4266,
+    "lng": 129.6201,
+    "description": "干潮時に現れるハート形の潮だまり。潮位確認が必要だが、奄美北部の写真スポットとして人気がある。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-mushiroze",
+    "name": "ムシロ瀬",
+    "category": "tourism",
+    "address": "鹿児島県大島郡天城町与名間",
+    "lat": 27.852,
+    "lng": 128.9133,
+    "description": "花崗岩の岩場が広がる徳之島の景勝地。南国の海とは違う力強い海岸風景を楽しめる。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-inutabu-cape",
+    "name": "犬田布岬",
+    "category": "tourism",
+    "address": "鹿児島県大島郡伊仙町犬田布",
+    "lat": 27.6815,
+    "lng": 128.9186,
+    "description": "徳之島南西部の断崖から海を望む岬。戦艦大和慰霊塔もあり、景観と歴史の両面で立ち寄れる。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-shoryudo",
+    "name": "昇竜洞",
+    "category": "tourism",
+    "address": "鹿児島県大島郡知名町住吉",
+    "lat": 27.3467,
+    "lng": 128.5891,
+    "description": "沖永良部島を代表する鍾乳洞。地下の造形を見学でき、島の地形や自然を体感する屋内スポットになる。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-ujiji-beach",
+    "name": "ウジジ浜",
+    "category": "tourism",
+    "address": "鹿児島県大島郡知名町芦清良",
+    "lat": 27.3568,
+    "lng": 128.6078,
+    "description": "奇岩と青い海が印象的な沖永良部島の海岸。ドライブ途中に短時間で立ち寄れる景勝スポット。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-miyama-satsuma-yaki",
+    "name": "美山",
+    "category": "tourism",
+    "address": "鹿児島県日置市東市来町美山",
+    "lat": 31.6581,
+    "lng": 130.3522,
+    "description": "薩摩焼の窯元や工房が集まる日置市の町並み。器やクラフトを見ながら歩け、鹿児島市からの日帰りにも向く。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-eguchi-beach",
+    "name": "江口浜",
+    "category": "tourism",
+    "address": "鹿児島県日置市東市来町伊作田",
+    "lat": 31.6802,
+    "lng": 130.3223,
+    "description": "東シナ海に面した日置市の海岸。夕日やサーフィンで知られ、いちき串木野方面の海沿いドライブに合う。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-fukiagehama-seaside-park",
+    "name": "吹上浜海浜公園",
+    "category": "tourism",
+    "address": "鹿児島県南さつま市加世田高橋1936-2",
+    "lat": 31.4292,
+    "lng": 130.2953,
+    "description": "吹上浜に近い広大な県立公園。サイクリングや遊具、キャンプ施設があり、南薩の家族向け観光に使いやすい。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-bansei-peace-museum",
+    "name": "万世特攻平和祈念館",
+    "category": "tourism",
+    "address": "鹿児島県南さつま市加世田高橋1955-3",
+    "lat": 31.4148,
+    "lng": 130.3061,
+    "description": "旧万世飛行場に関する資料を展示する平和学習施設。知覧と合わせて南薩の戦跡を学ぶ行程に入れやすい。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-mizonokuchi-cave",
+    "name": "溝ノ口洞穴",
+    "category": "tourism",
+    "address": "鹿児島県曽於市財部町下財部",
+    "lat": 31.7527,
+    "lng": 130.9878,
+    "description": "霧島山系の湧水がつくった大きな洞穴。鳥居と洞穴が作る景観が印象的で、曽於方面の自然スポットになる。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-yukyuno-mori",
+    "name": "悠久の森",
+    "category": "tourism",
+    "address": "鹿児島県曽於市財部町下財部",
+    "lat": 31.7844,
+    "lng": 130.989,
+    "description": "渓流沿いの森歩きを楽しめる曽於市の自然エリア。夏の涼感や紅葉など、季節の散策に向く。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-daguri-cape-park",
+    "name": "ダグリ岬遊園地",
+    "category": "tourism",
+    "address": "鹿児島県志布志市志布志町夏井211-2",
+    "lat": 31.4607,
+    "lng": 131.1083,
+    "description": "志布志湾を望む海沿いの遊園地。小さな子ども連れでも使いやすく、大隅東部のレジャー候補になる。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-shibushi-castle",
+    "name": "志布志城跡",
+    "category": "tourism",
+    "address": "鹿児島県志布志市志布志町帖",
+    "lat": 31.4773,
+    "lng": 131.1002,
+    "description": "中世山城の遺構が残る志布志の史跡。城跡散策と市街地の寺社めぐりを組み合わせやすい。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-kirishimagaoka-park",
+    "name": "霧島ヶ丘公園",
+    "category": "tourism",
+    "address": "鹿児島県鹿屋市浜田町1250",
+    "lat": 31.3781,
+    "lng": 130.8116,
+    "description": "かのやばら園を含む高台の公園。花の季節や展望を楽しめ、鹿屋市街から行きやすい休憩先になる。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-hanaze-natural-park",
+    "name": "花瀬自然公園",
+    "category": "tourism",
+    "address": "鹿児島県肝属郡錦江町田代川原",
+    "lat": 31.2205,
+    "lng": 130.8967,
+    "description": "川床の石畳と渓流が美しい自然公園。大隅南部で水辺の散策やキャンプを楽しみたい時に向く。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-uchinoura-space-center",
+    "name": "内之浦宇宙空間観測所",
+    "category": "tourism",
+    "address": "鹿児島県肝属郡肝付町南方1791-13",
+    "lat": 31.2514,
+    "lng": 131.0783,
+    "description": "ロケットや科学観測で知られる宇宙関連施設。種子島とは違う宇宙開発の拠点として、大隅東部の目的地になる。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-kishira-coast",
+    "name": "岸良海岸",
+    "category": "tourism",
+    "address": "鹿児島県肝属郡肝付町岸良",
+    "lat": 31.1717,
+    "lng": 130.9677,
+    "description": "透明度の高い海と白い砂浜が広がる大隅半島東岸の海岸。内之浦方面のドライブで立ち寄りやすい。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-kadokura-cape",
+    "name": "門倉岬",
+    "category": "tourism",
+    "address": "鹿児島県熊毛郡南種子町西之",
+    "lat": 30.3347,
+    "lng": 130.8834,
+    "description": "鉄砲伝来の地として知られる種子島南端の岬。海を望む景観と歴史を合わせて楽しめる。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-urata-beach",
+    "name": "浦田海水浴場",
+    "category": "tourism",
+    "address": "鹿児島県西之表市国上",
+    "lat": 30.8249,
+    "lng": 131.0332,
+    "description": "白い砂浜と透明度の高い海が魅力の種子島北部の海水浴場。夏のレジャーや海辺の散策に向く。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-kigensugi",
+    "name": "紀元杉",
+    "category": "tourism",
+    "address": "鹿児島県熊毛郡屋久島町",
+    "lat": 30.3039,
+    "lng": 130.5714,
+    "description": "車道近くから見学できる屋久杉の巨木。長時間登山が難しい旅程でも、屋久島らしい森を感じやすい。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-hirauchi-kaichu-onsen",
+    "name": "平内海中温泉",
+    "category": "tourism",
+    "address": "鹿児島県熊毛郡屋久島町平内",
+    "lat": 30.2337,
+    "lng": 130.5317,
+    "description": "干潮前後に入浴できる海辺の天然温泉。利用時間やマナー確認が必要だが、屋久島南部の個性的な体験になる。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-yudomari-onsen",
+    "name": "湯泊温泉",
+    "category": "tourism",
+    "address": "鹿児島県熊毛郡屋久島町湯泊",
+    "lat": 30.2351,
+    "lng": 130.5005,
+    "description": "海辺にある屋久島南部の温泉。周遊ドライブ中に立ち寄りやすく、自然の近さを感じられる。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-miyakozaki",
+    "name": "宮古崎",
+    "category": "tourism",
+    "address": "鹿児島県奄美市住用町見里",
+    "lat": 28.2638,
+    "lng": 129.3455,
+    "description": "笹原越しに東シナ海を望む奄美大島の景勝地。短いトレッキングで、島らしい海と緑の景観を楽しめる。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-kakeroma-island",
+    "name": "加計呂麻島",
+    "category": "tourism",
+    "address": "鹿児島県大島郡瀬戸内町",
+    "lat": 28.139,
+    "lng": 129.248,
+    "description": "奄美大島南部から渡る離島。集落や静かな浜を巡る島時間を楽しめ、瀬戸内町観光の拡張先になる。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-materiya-falls",
+    "name": "マテリヤの滝",
+    "category": "tourism",
+    "address": "鹿児島県大島郡大和村名音",
+    "lat": 28.3266,
+    "lng": 129.3436,
+    "description": "奄美大島の森の中にある滝。涼しげな水辺と亜熱帯の緑を感じられ、大和村方面の自然散策に向く。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-kanami-sotetsu-tunnel",
+    "name": "金見崎ソテツトンネル",
+    "category": "tourism",
+    "address": "鹿児島県大島郡徳之島町金見",
+    "lat": 27.8846,
+    "lng": 129.0302,
+    "description": "ソテツの並木がトンネルのように続く徳之島の景勝地。展望台からの海景色も楽しめる。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-innojofuta",
+    "name": "犬の門蓋",
+    "category": "tourism",
+    "address": "鹿児島県大島郡天城町兼久",
+    "lat": 27.8182,
+    "lng": 128.8912,
+    "description": "波で削られた奇岩と断崖が続く徳之島の海岸景勝地。荒々しい自然を感じるドライブスポットになる。",
+    "source": "公式・観光情報確認"
+  },
+  {
+    "id": "tourism-extra3-yoron-castle-ruins",
+    "name": "与論城跡",
+    "category": "tourism",
+    "address": "鹿児島県大島郡与論町立長",
+    "lat": 27.0414,
+    "lng": 128.4207,
+    "description": "与論島の高台に残る城跡。海を見渡す景色が良く、サザンクロスセンター周辺と合わせて歩きやすい。",
+    "source": "公式・観光情報確認"
   }
 ]
