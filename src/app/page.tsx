@@ -67,6 +67,13 @@ export default function Home() {
   const [mode, setMode] = useState<Mode>("chat");
   const [layoutMode, setLayoutMode] = useState<"pc" | "sp">("pc");
   const [spView, setSpView] = useState<"chat" | "route" | "map">("chat");
+
+  useEffect(() => {
+    const checkWidth = () => setLayoutMode(window.innerWidth < 768 ? "sp" : "pc");
+    checkWidth();
+    window.addEventListener("resize", checkWidth);
+    return () => window.removeEventListener("resize", checkWidth);
+  }, []);
   const [pointA, setPointA] = useState("");
   const [pointB, setPointB] = useState("");
   const [coordA, setCoordA] = useState<{ lat: number; lng: number } | null>(null);
