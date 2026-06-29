@@ -62,6 +62,7 @@ export default function Home() {
   const { messages, sendMessage, status } = useChat();
   const [input, setInput] = useState("");
   const [spots, setSpots] = useState<Spot[]>([]);
+  const [chatSpotDetails, setChatSpotDetails] = useState<Map<string, Spot>>(new Map());
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const [mode, setMode] = useState<Mode>("chat");
@@ -113,6 +114,24 @@ export default function Home() {
       }
     }
     setSpots(allSpots);
+    // 新しいスポットがあればGoogle Places APIで詳細取得
+    const newSpots = allSpots.filter((s) => !chatSpotDetails.has(s.name));
+    if (newSpots.length > 0) {
+      fetch("/api/spot-info", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ spots: newSpots }),
+      })
+        .then((r) => r.json())
+        .then((data) => {
+          setChatSpotDetails((prev) => {
+            const next = new Map(prev);
+            for (const s of data.spots) next.set(s.name, s);
+            return next;
+          });
+        })
+        .catch(() => {});
+    }
   }, [messages]);
 
   useEffect(() => {
@@ -437,18 +456,28 @@ export default function Home() {
                           : "bg-white/90 backdrop-blur-sm text-gray-700 shadow-lg shadow-gray-200/50 border border-white/80"
                       }`}>
                         {msg.role === "assistant" ? <div className="prose-chat"><Markdown>{cleanText(text)}</Markdown></div> : cleanText(text)}
-                        {msg.role === "assistant" && routeSpots.length > 0 && (() => {
-                          const mentioned = routeSpots.filter((s) => s.photoUrl && cleanText(text).includes(s.name));
+                        {msg.role === "assistant" && (() => {
+                          const cleaned = cleanText(text);
+                          const allAvailable = [
+                            ...routeSpots.filter((s) => s.photoUrl),
+                            ...Array.from(chatSpotDetails.values()).filter((s) => s.photoUrl),
+                          ];
+                          const seen = new Set<string>();
+                          const mentioned = allAvailable.filter((s) => {
+                            if (seen.has(s.name) || !cleaned.includes(s.name)) return false;
+                            seen.add(s.name);
+                            return true;
+                          });
                           if (mentioned.length === 0) return null;
                           return (
                             <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
                               {mentioned.map((s, j) => (
-                                <div key={j} className="shrink-0 w-32 rounded-lg border border-gray-100 overflow-hidden bg-gray-50">
-                                  <img src={s.photoUrl} alt={s.name} className="w-full h-20 object-cover" />
-                                  <div className="px-2 py-1">
-                                    <p className="text-xs font-medium text-gray-700 truncate">{s.name}</p>
+                                <div key={j} className="shrink-0 w-36 rounded-xl border border-gray-100 overflow-hidden bg-white shadow-sm hover:shadow-md transition-all">
+                                  <img src={s.photoUrl} alt={s.name} className="w-full h-24 object-cover" />
+                                  <div className="px-2 py-1.5">
+                                    <p className="text-xs font-semibold text-gray-700 truncate">{s.name}</p>
                                     {s.rating != null && (
-                                      <p className="text-xs text-amber-600">★{s.rating.toFixed(1)}</p>
+                                      <p className="text-xs text-amber-600">★{s.rating.toFixed(1)} <span className="text-gray-400">({s.reviewCount?.toLocaleString()}件)</span></p>
                                     )}
                                   </div>
                                 </div>
