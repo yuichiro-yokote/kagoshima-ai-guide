@@ -49,9 +49,31 @@ export async function GET(req: Request) {
   }
 
   const data = await res.json();
-  const features: PhotonFeature[] = data.features ?? [];
+  let features: PhotonFeature[] = data.features ?? [];
 
+  // Photonで見つからなければNominatimにフォールバック
   if (!features.length) {
+    const nomUrl = new URL("https://nominatim.openstreetmap.org/search");
+    nomUrl.searchParams.set("q", `鹿児島 ${q}`);
+    nomUrl.searchParams.set("format", "json");
+    nomUrl.searchParams.set("limit", String(limit));
+    nomUrl.searchParams.set("viewbox", "129.8,32.5,131.5,31.0");
+    nomUrl.searchParams.set("bounded", "1");
+    const nomRes = await fetch(nomUrl.toString(), {
+      headers: { "User-Agent": "kagoshima-ai-guide/1.0" },
+    });
+    if (nomRes.ok) {
+      const nomData = await nomRes.json();
+      if (nomData.length > 0) {
+        const nomResults = nomData.map((r: { lat: string; lon: string; display_name: string }) => ({
+          lat: parseFloat(r.lat),
+          lng: parseFloat(r.lon),
+          display_name: r.display_name,
+        }));
+        if (limit === 1) return Response.json(nomResults[0]);
+        return Response.json(nomResults);
+      }
+    }
     return Response.json({ error: "場所が見つかりませんでした" }, { status: 404 });
   }
 
