@@ -38,32 +38,32 @@ body {
 .prose-chat h2 {
   font-size: 1em;
   font-weight: 700;
-  margin: 0.25em 0 0.05em;
+  margin: 0.15em 0 0;
   color: #1e40af;
 }
 .prose-chat h3 {
   font-size: 0.95em;
   font-weight: 700;
-  margin: 0.2em 0 0.05em;
+  margin: 0.15em 0 0;
   color: #334155;
 }
 .prose-chat p {
-  margin: 0.05em 0;
-  line-height: 1.35;
+  margin: 0;
+  line-height: 1.2;
 }
 .prose-chat ul {
   list-style: disc;
   padding-left: 1.25em;
-  margin: 0.2em 0;
+  margin: 0;
 }
 .prose-chat ol {
   list-style: decimal;
   padding-left: 1.25em;
-  margin: 0.2em 0;
+  margin: 0;
 }
 .prose-chat li {
   margin: 0;
-  line-height: 1.3;
+  line-height: 1.15;
 }
 .prose-chat ul ul, .prose-chat ol ol, .prose-chat ul ol, .prose-chat ol ul {
   margin: 0.1em 0;

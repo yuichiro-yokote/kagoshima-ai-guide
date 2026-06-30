@@ -184,6 +184,12 @@ export default function Home() {
     return list;
   }, [routeSpots, enabledCategories, filterHighRating, sortBy]);
 
+  // チャットのスポットにGoogle Places情報（写真・評価）をマージ
+  const enrichedChatSpots = useMemo(
+    () => spots.map((s) => chatSpotDetails[s.name] ?? s),
+    [spots, chatSpotDetails]
+  );
+
   // 経由地スロット追加
   const addWaypointSlot = () => {
     if (waypoints.length >= MAX_WAYPOINTS) return;
@@ -487,7 +493,11 @@ export default function Home() {
                         {parsedSpots.length > 0 && (
                           <div className="mt-3 grid gap-2">
                             {parsedSpots.slice(0, 6).map((spot, j) => (
-                              <div key={`${spot.name}-${j}`} className="rounded-xl border border-gray-100 bg-white px-3 py-2 shadow-sm">
+                              <div
+                                key={`${spot.name}-${j}`}
+                                onClick={() => { setFocusedSpot(spot); setFocusKey((k) => k + 1); if (layoutMode === "sp") setSpView("map"); }}
+                                className={`rounded-xl border bg-white px-3 py-2 shadow-sm cursor-pointer hover:shadow-md transition-all ${focusedSpot?.name === spot.name && focusedSpot?.lat === spot.lat ? "border-blue-400 ring-2 ring-blue-200" : "border-gray-100"}`}
+                              >
                                 <div className="flex items-start justify-between gap-2">
                                   <div className="min-w-0">
                                     <div className="flex items-center gap-1.5">
@@ -525,7 +535,11 @@ export default function Home() {
                           return (
                             <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
                               {mentioned.map((s, j) => (
-                                <div key={j} className="shrink-0 w-36 rounded-xl border border-gray-100 overflow-hidden bg-white shadow-sm hover:shadow-md transition-all">
+                                <div
+                                  key={j}
+                                  onClick={() => { setFocusedSpot(s); setFocusKey((k) => k + 1); if (layoutMode === "sp") setSpView("map"); }}
+                                  className={`shrink-0 w-36 rounded-xl border overflow-hidden bg-white shadow-sm hover:shadow-md transition-all cursor-pointer ${focusedSpot?.name === s.name && focusedSpot?.lat === s.lat ? "border-blue-400 ring-2 ring-blue-200" : "border-gray-100"}`}
+                                >
                                   <img src={s.photoUrl} alt={s.name} className="w-full h-24 object-cover" />
                                   <div className="px-2 py-1.5">
                                     <p className="text-xs font-semibold text-gray-700 truncate">{s.name}</p>
@@ -849,7 +863,7 @@ export default function Home() {
         {/* Map */}
         <div className={`min-h-0 ${layoutMode === "pc" ? "w-1/2" : spView === "map" ? "flex-1 w-full" : "hidden"}`}>
           <Map
-            spots={mode === "route" ? displayedSpots : spots}
+            spots={mode === "route" ? displayedSpots : enrichedChatSpots}
             route={routeCoords}
             altRoutes={mode === "route" && allRoutes.length > 1 ? allRoutes
               .filter((_, i) => i !== selectedRouteIndex)
