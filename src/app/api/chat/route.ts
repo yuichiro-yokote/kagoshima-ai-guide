@@ -213,7 +213,122 @@ function pickCandidates<T extends SpotEntry | RestaurantEntry>(items: T[], inten
   return scored.slice(0, limit).map(({ item }) => item);
 }
 
-function buildRecommendationContext(userText: string): string {
+// 定義済みエリア外の地名を抽出（例: 「鹿児島大学周辺のランチは？」→「鹿児島大学」）
+function extractAreaQuery(text: string): string | null {
+  const m1 = text.match(/([\p{L}\p{N}ー・]{2,20}?)(?:周辺|付近|近く|あたり|エリア)/u);
+  if (m1) return m1[1];
+  const m2 = text.match(/([\p{L}\p{N}ー・]{2,20})の(?:ランチ|グルメ|観光|食事|ご飯|ごはん|スポット|お店|飲食店)/u);
+  if (m2) return m2[1];
+  return null;
+}
+
+async function geocodeArea(query: string): Promise<{ lat: number; lng: number } | null> {
+  try {
+    const url = new URL("https://photon.komoot.io/api/");
+    url.searchParams.set("q", query);
+    url.searchParams.set("limit", "1");
+    url.searchParams.set("bbox", "129.8,31.0,131.5,32.5");
+    url.searchParams.set("lat", "31.5889");
+    url.searchParams.set("lon", "130.5478");
+    const res = await fetch(url.toString(), {
+      headers: { "User-Agent": "kagoshima-ai-guide/1.0" },
+      signal: AbortSignal.timeout(4000),
+    });
+    if (res.ok) {
+      const data = await res.json();
+      const f = data.features?.[0];
+      if (f) return { lat: f.geometry.coordinates[1], lng: f.geometry.coordinates[0] };
+    }
+  } catch {
+    // フォールバックへ
+  }
+  try {
+    const nomUrl = new URL("https://nominatim.openstreetmap.org/search");
+    nomUrl.searchParams.set("q", `鹿児島 ${query}`);
+    nomUrl.searchParams.set("format", "json");
+    nomUrl.searchParams.set("limit", "1");
+    nomUrl.searchParams.set("viewbox", "129.8,32.5,131.5,31.0");
+    nomUrl.searchParams.set("bounded", "1");
+    const res = await fetch(nomUrl.toString(), {
+      headers: { "User-Agent": "kagoshima-ai-guide/1.0" },
+      signal: AbortSignal.timeout(4000),
+    });
+    if (res.ok) {
+      const data = await res.json();
+      if (data[0]) return { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) };
+    }
+  } catch {
+    // 諦める
+  }
+  return null;
+}
+
+type PlaceResult = { name: string; address: string; lat: number; lng: number; rating?: number; reviewCount?: number };
+
+async function searchNearbyPlaces(lat: number, lng: number, type: "restaurant" | "tourist_attraction"): Promise<PlaceResult[]> {
+  const apiKey = process.env.GOOGLE_PLACES_API_KEY;
+  if (!apiKey) return [];
+  try {
+    const url = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json");
+    url.searchParams.set("location", `${lat},${lng}`);
+    url.searchParams.set("radius", "1000");
+    url.searchParams.set("type", type);
+    url.searchParams.set("language", "ja");
+    url.searchParams.set("key", apiKey);
+    const res = await fetch(url.toString(), { signal: AbortSignal.timeout(5000) });
+    if (!res.ok) return [];
+    const data = await res.json();
+    type NearbyResult = {
+      name: string;
+      vicinity?: string;
+      geometry?: { location?: { lat: number; lng: number } };
+      rating?: number;
+      user_ratings_total?: number;
+    };
+    return ((data.results ?? []) as NearbyResult[])
+      .filter((r) => r.geometry?.location)
+      .slice(0, 8)
+      .map((r) => ({
+        name: r.name,
+        address: r.vicinity ?? "",
+        lat: r.geometry!.location!.lat,
+        lng: r.geometry!.location!.lng,
+        rating: r.rating,
+        reviewCount: r.user_ratings_total,
+      }));
+  } catch {
+    return [];
+  }
+}
+
+function buildPlaceLines(places: PlaceResult[]): string {
+  return places
+    .map((p) => `- ${p.name}${p.rating != null ? ` ★${p.rating}（${p.reviewCount?.toLocaleString()}件）` : ""} 住所:${p.address} (${p.lat}, ${p.lng})`)
+    .join("\n");
+}
+
+async function buildDynamicSection(userText: string, intent: QueryIntent): Promise<string> {
+  if (intent.locationWords.length > 0) return ""; // 既知エリアはキュレーション済みデータを優先
+  const areaQuery = extractAreaQuery(userText);
+  if (!areaQuery) return "";
+  const coord = await geocodeArea(areaQuery);
+  if (!coord) return "";
+
+  const [restaurants, spots] = await Promise.all([
+    intent.wantsFood ? searchNearbyPlaces(coord.lat, coord.lng, "restaurant") : Promise.resolve([]),
+    intent.wantsTourism ? searchNearbyPlaces(coord.lat, coord.lng, "tourist_attraction") : Promise.resolve([]),
+  ]);
+
+  if (restaurants.length === 0 && spots.length === 0) return "";
+
+  return `
+
+## 「${areaQuery}」周辺のリアルタイム検索結果（Google Places、実在の店舗・施設）
+${restaurants.length ? `### 飲食店\n${buildPlaceLines(restaurants)}` : ""}
+${spots.length ? `### 観光・施設\n${buildPlaceLines(spots)}` : ""}`;
+}
+
+async function buildRecommendationContext(userText: string): Promise<string> {
   const intent = parseIntent(userText);
   const allSpots = (spotsData as SpotEntry[]).filter(
     (spot) => (spot.category === "tourism" || spot.category === "history") && spot.lat && spot.lng
@@ -229,6 +344,8 @@ function buildRecommendationContext(userText: string): string {
     intent.requestedMinutes ? `時間:${intent.requestedMinutes}分以内を優先` : "",
   ].filter(Boolean).join(" / ") || "明示条件なし";
 
+  const dynamicSection = await buildDynamicSection(userText, intent);
+
   return `## 質問に基づく推薦候補
 
 抽出条件: ${intentSummary}
@@ -237,28 +354,29 @@ function buildRecommendationContext(userText: string): string {
 ${spotCandidates.length ? buildSpotLines(spotCandidates) : "- 条件に合う観光候補が少ないため、近い地域の候補も検討してください。"}
 
 ### グルメ候補
-${restaurantCandidates.length ? buildRestaurantLines(restaurantCandidates) : "- 条件に合う飲食店候補が少ないため、近い地域の候補も検討してください。"}`;
+${restaurantCandidates.length ? buildRestaurantLines(restaurantCandidates) : "- 条件に合う飲食店候補が少ないため、近い地域の候補も検討してください。"}${dynamicSection}`;
 }
 
-function buildSystemPrompt(userText: string): string {
+async function buildSystemPrompt(userText: string): Promise<string> {
   return `あなたは「かごしまAIガイド」です。鹿児島を中心に、九州全般や旅行全般の質問にも対応するAIコンシェルジュです。観光情報を中心に、施設・交通・グルメ・歴史・大学・生活情報など幅広くサポートしてください。
 
 ## ルール
 - 鹿児島市とその周辺に関する質問には特に詳しく回答してください。鹿児島以外の質問にも対応可能です
 - **必ず具体的な店名を挙げて紹介してください。「○○料理の店が多くあります」のようなジャンル紹介ではなく、実際の店名（例:「いちにいさん天文館店」「黒かつ亭」）を出してください。**
 - **「観光案内所に聞いてください」「Google検索してください」のような回答は絶対にしないでください。あなた自身がガイドです。**
-- グルメの質問には、推薦候補リストから該当エリア・地域・タグに合う店を選んで3〜5件紹介してください
+- **下の推薦候補リストに該当エリアの情報が無い場合、「リアルタイム検索結果」が併記されていればそれを使って具体的に回答してください。リアルタイム検索結果も無い場合は、絶対に実在しない店名を創作しないでください。その場合は「○○大学周辺は学生向けの定食屋やラーメン店が多いエリアです」のように、知っている範囲でエリアの傾向だけを伝え、店名は無理に出さないでください。**
+- グルメの質問には、推薦候補リストまたはリアルタイム検索結果から該当エリア・地域・タグに合う店を選んで3〜5件紹介してください
 - ユーザーが特定のエリア（天文館、中央駅周辺など）を指定した場合は、そのエリアに実際にあるスポットだけを紹介してください。別のエリアのスポットを混ぜないでください（例: 天文館と聞かれたら中央駅の店を出さない）
 - ユーザーが「雨の日」「家族向け」「短時間」「絶景」「海鮮」などの条件を出した場合は、tags と durationMinutes を優先して候補を絞ってください
 - 観光とグルメを同時に聞かれた場合は、同じ region / area のスポットと飲食店を組み合わせ、移動負担が小さい順に提案してください
-- スポットを紹介する際は、**必ず**以下のJSON形式で場所情報を回答の末尾に付けてください：
+- スポットを紹介する際は、緯度経度が分かる場合は**必ず**以下のJSON形式で場所情報を回答の末尾に付けてください：
   <!--SPOTS_JSON[{"name":"スポット名","category":"観光または飲食","lat":緯度,"lng":経度,"description":"一言説明","durationMinutes":60,"tags":["タグ"]}]SPOTS_JSON-->
-- 複数スポットがある場合は配列に複数入れてください。**最低3件は含めてください**
+- 複数スポットがある場合は配列に複数入れてください。**実在すると確認できるスポットのみJSONに含め、最低3件を目安にしてください**
 - フレンドリーで親しみやすい口調で案内してください
 - 営業時間や料金は「最新情報は公式サイトでご確認ください」と添えてください
-- 以下の推薦候補リストを優先して回答してください。ここにないスポットや飲食店についても知識があれば補足して構いませんが、場所JSONには緯度経度が分かる候補を優先してください。
+- 以下の推薦候補リストを優先して回答してください。リアルタイム検索結果が付いている場合はそれも実在情報として積極的に使ってください。
 
-${buildRecommendationContext(userText)}
+${await buildRecommendationContext(userText)}
 
 ### 交通
 - 鹿児島市電（路面電車）: 市内観光に便利。1回190円
@@ -317,7 +435,7 @@ export async function POST(req: Request) {
 
   const result = streamText({
     model: anthropic("claude-haiku-4-5-20251001"),
-    system: buildSystemPrompt(userText),
+    system: await buildSystemPrompt(userText),
     messages: toCoreMessages(messages),
   });
 

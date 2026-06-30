@@ -184,9 +184,12 @@ export default function Home() {
     return list;
   }, [routeSpots, enabledCategories, filterHighRating, sortBy]);
 
-  // チャットのスポットにGoogle Places情報（写真・評価）をマージ
+  // チャットのスポットにGoogle Places情報（写真・評価）をマージし、情報が取れたものだけに限定
   const enrichedChatSpots = useMemo(
-    () => spots.map((s) => chatSpotDetails[s.name] ?? s),
+    () =>
+      spots
+        .map((s) => chatSpotDetails[s.name] ?? s)
+        .filter((s) => s.rating != null || s.photoUrl),
     [spots, chatSpotDetails]
   );
 
@@ -481,7 +484,10 @@ export default function Home() {
                 )}
                 {messages.map((msg) => {
                   const text = getTextContent(msg);
-                  const parsedSpots = msg.role === "assistant" ? parseSpots(text) : [];
+                  const parsedSpots = (msg.role === "assistant" ? parseSpots(text) : []).filter((spot) => {
+                    const detail = chatSpotDetails[spot.name];
+                    return detail && (detail.rating != null || detail.photoUrl);
+                  });
                   return (
                     <div key={msg.id} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                       <div className={`max-w-[85%] rounded-2xl px-5 py-3.5 whitespace-pre-wrap text-sm leading-relaxed ${
