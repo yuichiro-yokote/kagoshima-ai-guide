@@ -121,6 +121,9 @@ export default function Home() {
   const [ashFallLoading, setAshFallLoading] = useState(false);
   const [ashFallError, setAshFallError] = useState<string | null>(null);
 
+  const [focusedSpot, setFocusedSpot] = useState<Spot | null>(null);
+  const [focusKey, setFocusKey] = useState(0);
+
   const isLoading = status === "streaming" || status === "submitted";
 
   useEffect(() => {
@@ -785,7 +788,7 @@ export default function Home() {
                           const alreadyAdded = waypoints.some((w) => w.coord?.lat === spot.lat && w.coord?.lng === spot.lng);
                           const atLimit = waypoints.length >= MAX_WAYPOINTS && !waypoints.some((w) => !w.coord);
                           return (
-                            <div key={`${spot.name}-${i}`} className="bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md flex overflow-hidden transition-all hover:border-gray-200">
+                            <div key={`${spot.name}-${i}`} onClick={() => { setFocusedSpot(spot); setFocusKey((k) => k + 1); if (layoutMode === "sp") setSpView("map"); }} className={`bg-white rounded-xl border shadow-sm hover:shadow-md flex overflow-hidden transition-all cursor-pointer ${focusedSpot?.name === spot.name && focusedSpot?.lat === spot.lat ? "border-blue-400 ring-2 ring-blue-200" : "border-gray-100 hover:border-gray-200"}`}>
                               {spot.photoUrl && (
                                 <img src={spot.photoUrl} alt={spot.name} className="w-20 h-20 object-cover shrink-0" />
                               )}
@@ -799,7 +802,7 @@ export default function Home() {
                                   </div>
                                   <button
                                     type="button"
-                                    onClick={() => addWaypointFromSpot(spot)}
+                                    onClick={(e) => { e.stopPropagation(); addWaypointFromSpot(spot); }}
                                     disabled={alreadyAdded || atLimit}
                                     className={`shrink-0 text-xs px-2 py-0.5 rounded-full border transition-colors ${
                                       alreadyAdded
@@ -861,6 +864,8 @@ export default function Home() {
             goal={coordB}
             waypointMarkers={mode === "route" ? waypointMarkers : undefined}
             ashFall={showAshFall ? ashFallData : null}
+            focusedSpot={focusedSpot}
+            focusKey={focusKey}
           />
         </div>
       </div>

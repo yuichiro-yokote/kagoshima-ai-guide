@@ -193,7 +193,7 @@ function getMaxSpots(zoom: number): number {
   return 5;
 }
 
-function ZoomAwareSpots({ spots }: { spots: Spot[] }) {
+function ZoomAwareSpots({ spots, focusedSpotName, focusKey }: { spots: Spot[]; focusedSpotName?: string | null; focusKey?: number }) {
   const map = useMap();
   const [zoom, setZoom] = useState(map.getZoom());
 
@@ -202,6 +202,38 @@ function ZoomAwareSpots({ spots }: { spots: Spot[] }) {
     map.on("zoomend", onZoom);
     return () => { map.off("zoomend", onZoom); };
   }, [map, onZoom]);
+
+  useEffect(() => {
+    if (!focusedSpotName) return;
+    const spot = spots.find((s) => s.name === focusedSpotName);
+    if (!spot) return;
+
+    const onMoveEnd = () => {
+      map.off("moveend", onMoveEnd);
+      setTimeout(() => {
+        map.eachLayer((layer) => {
+          if (layer instanceof L.Marker) {
+            const ll = layer.getLatLng();
+            if (Math.abs(ll.lat - spot.lat) < 0.0001 && Math.abs(ll.lng - spot.lng) < 0.0001) {
+              layer.openPopup();
+            }
+          }
+        });
+      }, 100);
+    };
+
+    // タブ切替で地図が hidden→visible になる場合があるため遅延してサイズ再計算
+    const timer = setTimeout(() => {
+      map.invalidateSize();
+      map.flyTo([spot.lat, spot.lng], Math.max(map.getZoom(), 15), { duration: 0.5 });
+      map.on("moveend", onMoveEnd);
+    }, 200);
+
+    return () => {
+      clearTimeout(timer);
+      map.off("moveend", onMoveEnd);
+    };
+  }, [focusedSpotName, focusKey, spots, map]);
 
   const maxSpots = getMaxSpots(zoom);
   const prioritized = [...spots].sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0));
@@ -300,6 +332,8 @@ export default function Map({
   goal,
   waypointMarkers,
   ashFall,
+  focusedSpot,
+  focusKey,
 }: {
   spots: Spot[];
   route?: [number, number][] | null;
@@ -311,6 +345,8 @@ export default function Map({
   goal?: LatLng | null;
   waypointMarkers?: (LatLng & { name: string })[];
   ashFall?: AshFallData | null;
+  focusedSpot?: Spot | null;
+  focusKey?: number;
 }) {
   return (
     <MapContainer
@@ -402,7 +438,7 @@ export default function Map({
           </Marker>
         </>
       )}
-      <ZoomAwareSpots spots={spots} />
+      <ZoomAwareSpots spots={spots} focusedSpotName={focusedSpot?.name} focusKey={focusKey} />
       <InvalidateSize />
       <FitBounds spots={spots} route={route ?? null} start={start ?? null} goal={goal ?? null} />
     </MapContainer>
